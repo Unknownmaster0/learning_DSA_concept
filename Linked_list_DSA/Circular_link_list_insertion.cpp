@@ -95,6 +95,8 @@ void print(Node *tail)
     cout << endl;
 }
 
+/*
+
 bool isCircular(Node* head){
     // if the list has no node or the list is null -> then the list is circular;
     if(head == NULL){
@@ -111,6 +113,10 @@ bool isCircular(Node* head){
 
     return true;
 }
+
+*/
+
+/*
 
 // This function is checking whether the loop is present inside your linked list or not.
 bool DetectLoop(Node* head){
@@ -138,6 +144,49 @@ bool DetectLoop(Node* head){
 
 }
 
+*/
+
+Node* FloydsLoopDetection(Node* head){
+
+    if(head == NULL) return head;
+
+    Node* slow = head;
+    Node* fast = head;
+
+    while(slow != NULL && fast != NULL){
+
+        fast = fast -> next;
+        if(fast != NULL){
+            fast = fast -> next;
+        }
+
+        slow = slow -> next;
+
+        if(fast == slow){ // meet at one node, loop exist.
+            return fast;
+        }
+
+    }
+
+    return NULL;
+}
+
+Node* first_Node(Node* head){
+
+    if(head == NULL) return head;
+
+    Node* fast = FloydsLoopDetection(head);
+    Node* slow = head;
+
+    while( slow != fast ){
+        fast = fast -> next;
+        slow = slow -> next;
+    }
+
+    return slow;
+}
+
+
 int main()
 {
     Node *tail = NULL;
@@ -151,6 +200,13 @@ int main()
     print(tail);
     deleteNode(tail, 1);
     print(tail);
+
+    // In case of the circular linked list the first node is the first element in the loop
+    Node* temp = first_Node(tail);
+    cout<<"temp -> "<<temp->data<<endl;
+
+    /*
+
     if(isCircular(tail)){
         cout<<"linked list is circular."<<endl;
     }
@@ -158,14 +214,18 @@ int main()
         cout<<"linked list is not circular."<<endl;
     }
 
+    */
 
-
+   /*
+   
     if(DetectLoop(tail)){
         cout<<"Yes, The loop is present."<<endl;
     }
     else{
         cout<<"No, the loop is not present."<<endl;
     }
+   */
+
 
     return 0;
 }
