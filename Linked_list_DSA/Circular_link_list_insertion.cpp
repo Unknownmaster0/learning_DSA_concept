@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 using namespace std;
 
 class Node
@@ -111,6 +112,32 @@ bool isCircular(Node* head){
     return true;
 }
 
+// This function is checking whether the loop is present inside your linked list or not.
+bool DetectLoop(Node* head){
+
+// when the list is empty then the loop will oviously not there.
+    if(head == NULL){
+        return false;
+    }
+
+    map<Node*, bool>visited;
+    Node* temp = head;
+
+    while(temp != NULL){
+
+        if(visited[temp] == true){ // it means the loop is visited earlier, hence the loop is present in the linked list.
+            return true;
+        }
+
+        visited[temp] = true;
+        temp = temp->next; 
+
+    }
+
+    return false;
+
+}
+
 int main()
 {
     Node *tail = NULL;
@@ -129,6 +156,15 @@ int main()
     }
     else{
         cout<<"linked list is not circular."<<endl;
+    }
+
+
+
+    if(DetectLoop(tail)){
+        cout<<"Yes, The loop is present."<<endl;
+    }
+    else{
+        cout<<"No, the loop is not present."<<endl;
     }
 
     return 0;

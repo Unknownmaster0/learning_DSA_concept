@@ -52,6 +52,7 @@ Node *kReverse(Node *head, int k)
     Node *curr = head;
     Node *prev = NULL;
     int count = 0;
+    
     while (curr != NULL && count < k)
     {
         forward = curr->next;
