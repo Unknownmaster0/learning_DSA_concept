@@ -104,6 +104,8 @@ void print(Node *&head)
     cout << endl;
 }
 
+/*
+
 // This function is checking whether the loop is present inside your linked list or not.
 bool DetectLoop(Node *head)
 {
@@ -132,6 +134,41 @@ bool DetectLoop(Node *head)
 
     return false;
 }
+
+*/
+
+/*
+
+
+// This function Detect the loop in the linked list.
+bool FloydsLoopDetection(Node* head){
+
+    if(head == NULL) return false;
+
+    Node* slow = head;
+    Node* fast = head;
+
+    while(slow != NULL && fast != NULL){
+
+        fast = fast -> next;
+        if(fast != NULL){
+            fast = fast -> next;
+        }
+
+        slow = slow -> next;
+
+        if(fast == slow){ // meet at one node, loop exist.
+            return true;
+        }
+
+    }
+
+    return false;
+
+}
+
+*/
+
 
 int main()
 {
@@ -179,7 +216,8 @@ int main()
     // cout<<"head -> "<<head->data<<endl;
     // cout<<"tail -> "<<tail->data<<endl;
 
-    if (DetectLoop(head))
+/*
+    if (FloydsLoopDetection(head))
     {
         cout << "Yes, The loop is present." << endl;
     }
@@ -187,6 +225,9 @@ int main()
     {
         cout << "No, the loop is not present." << endl;
     }
+
+*/
+
 
     return 0;
 }
