@@ -197,7 +197,6 @@ bool DetectLoop(Node *head)
 */
 
 /*
-
 // This function is to remove the duplicate Node in the linked list.
 void removeDuplicate(Node *&head)
 {
@@ -224,7 +223,6 @@ void removeDuplicate(Node *&head)
     }
     return;
 }
-
 */
 
 int main()
@@ -259,7 +257,7 @@ int main()
     insertAtPosition(head, tail, 6, 3);
     print(head);
 
-    insertAtPosition(head, tail, 7, 3);
+    insertAtPosition(head, tail, 7, 4);
     print(head);
 
     insertAtPosition(head, tail, 8, 4);
@@ -296,12 +294,10 @@ int main()
 
     */
 
-    /*
-
-     removeDuplicate(head);
-     print(head);
-
-    */
+/*
+    removeDuplicate(head);
+    print(head);
+*/
 
     return 0;
 }
