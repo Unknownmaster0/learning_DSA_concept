@@ -169,6 +169,63 @@ bool FloydsLoopDetection(Node* head){
 
 */
 
+/*
+
+bool DetectLoop(Node *head)
+{
+    if(head == NULL){
+        return false;
+    }
+
+    Node *ptr;
+    Node *temp = head;
+    while (temp->next != ptr)
+    {
+        Node *forward = temp->next;
+        temp->next = ptr;
+        temp = forward;
+
+        if (temp == NULL)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+*/
+
+/*
+
+// This function is to remove the duplicate Node in the linked list.
+void removeDuplicate(Node *&head)
+{
+
+    if (head == NULL)
+        return;
+
+    Node *prev = head;
+    Node *curr = head->next;
+
+    while (curr != NULL)
+    {
+        if (prev->data != curr->data)
+        {
+            prev = curr;
+            curr = curr->next;
+        }
+        else
+        {
+            prev->next = curr->next;
+            curr->next = NULL;
+            curr = prev->next;
+        }
+    }
+    return;
+}
+
+*/
 
 int main()
 {
@@ -182,30 +239,30 @@ int main()
     // if the list is null in starting.
     Node *head = NULL;
     Node *tail = NULL;
-    print(head);
-
-    insertAtFront(head, tail, 12);
-    print(head);
-
-    insertAtFront(head, tail, 13);
-    print(head);
-
-    insertAtEnd(tail, 15);
-    print(head);
-
-    // insertAtEnd(tail, 20);
     // print(head);
 
-    // insertAtEnd(tail, 125);
-    // print(head);
-
-    insertAtPosition(head, tail, 4, 9);
+    insertAtFront(head, tail, 1);
     print(head);
 
-    insertAtPosition(head, tail, 1, 11);
+    insertAtFront(head, tail, 1);
     print(head);
 
-    insertAtPosition(head, tail, 3, 99);
+    insertAtEnd(tail, 2);
+    print(head);
+
+    insertAtEnd(tail, 3);
+    print(head);
+
+    insertAtEnd(tail, 3);
+    print(head);
+
+    insertAtPosition(head, tail, 6, 3);
+    print(head);
+
+    insertAtPosition(head, tail, 7, 3);
+    print(head);
+
+    insertAtPosition(head, tail, 8, 4);
     print(head);
 
     // this is insert at last wala case hai, but in this tail is not updated to the last element if we have not write the
@@ -216,18 +273,35 @@ int main()
     // cout<<"head -> "<<head->data<<endl;
     // cout<<"tail -> "<<tail->data<<endl;
 
-/*
-    if (FloydsLoopDetection(head))
-    {
-        cout << "Yes, The loop is present." << endl;
-    }
-    else
-    {
-        cout << "No, the loop is not present." << endl;
-    }
+    /*
+        if (FloydsLoopDetection(head))
+        {
+            cout << "Yes, The loop is present." << endl;
+        }
+        else
+        {
+            cout << "No, the loop is not present." << endl;
+        }
 
-*/
+    */
 
+    /*
+
+        if(DetectLoop(tail)){
+            cout<<"Yes, The loop is present."<<endl;
+        }
+        else{
+            cout<<"No, the loop is not present."<<endl;
+        }
+
+    */
+
+    /*
+
+     removeDuplicate(head);
+     print(head);
+
+    */
 
     return 0;
 }

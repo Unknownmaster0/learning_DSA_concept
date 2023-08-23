@@ -146,6 +146,9 @@ bool DetectLoop(Node* head){
 
 */
 
+/*
+
+// This function will detect the loop in the list.
 Node* FloydsLoopDetection(Node* head){
 
     if(head == NULL) return head;
@@ -171,6 +174,7 @@ Node* FloydsLoopDetection(Node* head){
     return NULL;
 }
 
+// This function will give the first Node of the loop in the linked list.
 Node* first_Node(Node* head){
 
     if(head == NULL) return head;
@@ -185,6 +189,32 @@ Node* first_Node(Node* head){
 
     return slow;
 }
+
+*/
+
+bool DetectLoop(Node *head)
+{
+    if(head == NULL){
+        return false;
+    }
+
+    Node *ptr;
+    Node *temp = head;
+    while (temp->next != ptr)
+    {
+        Node *forward = temp->next;
+        temp->next = ptr;
+        temp = forward;
+
+        if (temp == NULL)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 
 
 int main()
@@ -201,9 +231,14 @@ int main()
     deleteNode(tail, 1);
     print(tail);
 
+/*
+
+
     // In case of the circular linked list the first node is the first element in the loop
     Node* temp = first_Node(tail);
     cout<<"temp -> "<<temp->data<<endl;
+
+*/
 
     /*
 
@@ -216,7 +251,7 @@ int main()
 
     */
 
-   /*
+
    
     if(DetectLoop(tail)){
         cout<<"Yes, The loop is present."<<endl;
@@ -224,7 +259,7 @@ int main()
     else{
         cout<<"No, the loop is not present."<<endl;
     }
-   */
+
 
 
     return 0;
