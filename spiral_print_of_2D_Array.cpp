@@ -26,7 +26,7 @@ vector<int> spiralPrint(vector<vector<int>> arr)
     while (count != totalElements)
     {
         // 1st Row
-        for (int i = startCol; i <= endCols; i++)
+        for (int i = startCol; count < totalElements && i <= endCols; i++)
         {
             ans.push_back(arr[startRow][i]);
             count++;
@@ -36,7 +36,7 @@ vector<int> spiralPrint(vector<vector<int>> arr)
         // cout<<"startRows -> "<<startRow<<endl;
 
         // last col
-        for (int i = startRow; i <= endRows; i++)
+        for (int i = startRow; count < totalElements && i <= endRows; i++)
         {
             ans.push_back(arr[i][endCols]);
             count++;
@@ -44,7 +44,7 @@ vector<int> spiralPrint(vector<vector<int>> arr)
         endCols--;
 
         // last row
-        for (int i = endCols; i >= startCol; i--)
+        for (int i = endCols; count < totalElements && i >= startCol; i--)
         {
             ans.push_back(arr[endRows][i]);
             count++;
@@ -52,7 +52,7 @@ vector<int> spiralPrint(vector<vector<int>> arr)
         endRows--;
 
         // first col
-        for (int i = endRows; i >= startRow; i--)
+        for (int i = endRows; count < totalElements && i >= startRow; i--)
         {
             ans.push_back(arr[i][startCol]);
             count++;
@@ -73,7 +73,8 @@ void print(vector<int> ans)
 
 int main()
 {
-    vector<vector<int>> nums{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    // vector<vector<int>> nums{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    vector<vector<int>> nums{{1, 2, 3, 4, 5}};
     vector<int> ans = spiralPrint(nums);
     print(ans);
     return 0;
