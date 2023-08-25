@@ -197,7 +197,7 @@ bool DetectLoop(Node *head)
 */
 
 /*
-// This function is to remove the duplicate Node in the linked list.
+// This function is to remove the duplicate Node in the sorted linked list.
 void removeDuplicate(Node *&head)
 {
 
@@ -225,6 +225,41 @@ void removeDuplicate(Node *&head)
 }
 */
 
+/*
+// This function is to remove the duplicate from the unsorted linked list.
+*/
+Node *RemoveDuplicate(Node *head)
+{
+    if (head == NULL || head->next == NULL)
+        return head;
+
+    Node *curr = head;
+    while (curr != NULL)
+    {
+        Node *prev = curr;
+        Node *temp = curr->next;
+        while (temp != NULL)
+        {
+            if (curr->data == temp->data)
+            {
+                prev->next = temp->next;
+                temp->next = NULL;
+                delete (temp);
+                temp = prev->next;
+            }
+            else
+            {
+                prev = temp;
+                temp = temp->next;
+            }
+        }
+
+        curr = curr->next;
+    }
+
+    return head;
+}
+
 int main()
 {
     // creating the new node of the linked list.
@@ -245,22 +280,22 @@ int main()
     insertAtFront(head, tail, 1);
     print(head);
 
+    insertAtEnd(tail, 1);
+    print(head);
+
     insertAtEnd(tail, 2);
     print(head);
 
-    insertAtEnd(tail, 3);
-    print(head);
-
-    insertAtEnd(tail, 3);
+    insertAtEnd(tail, 1);
     print(head);
 
     insertAtPosition(head, tail, 6, 3);
     print(head);
 
-    insertAtPosition(head, tail, 7, 4);
+    insertAtPosition(head, tail, 7, 2);
     print(head);
 
-    insertAtPosition(head, tail, 8, 4);
+    insertAtPosition(head, tail, 8, 3);
     print(head);
 
     // this is insert at last wala case hai, but in this tail is not updated to the last element if we have not write the
@@ -294,10 +329,12 @@ int main()
 
     */
 
-/*
-    removeDuplicate(head);
+    /*
+        removeDuplicate(head);
+        print(head);
+    */
+    head = RemoveDuplicate(head);
     print(head);
-*/
 
     return 0;
 }
