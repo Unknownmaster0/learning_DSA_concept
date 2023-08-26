@@ -24,7 +24,7 @@ Node *merge(Node *head1, Node *head2)
     Node *dummyTail = dummyHead;
     while (first != NULL && second != NULL)
     {
-        if (first->data < second->data) 
+        if (first->data < second->data)
         {
             dummyTail->next = first;
             dummyTail = first;
@@ -66,11 +66,71 @@ Node *merge(Node *head1, Node *head2)
 Concept ->
              Step 1 -> find the first smallest node among the two
              Step 2 -> make the first list two which the whose first node is small
-             Step 3 -> 
+             Step 3 ->
 
 */
 
-Node* merge(Node* first,Node* seocnd)
+Node *solve(Node *first, Node *second)
+{
+    // if first list has only one element then ->
+    if (first->next == NULL)
+    {
+        first->next = second;
+        return first;
+    }
+    // else if first list has more than one element then ->
+    Node *prev = first;
+    Node *curr1 = first->next;
+    Node *curr2 = second;
+
+    while (curr1 != NULL && curr2 != NULL)
+    {
+        if (curr2->data >= prev->data && curr2->data <= curr1->data)
+        {
+            // fixing the pointers to the correct place.
+            Node *next = curr2->next;
+            prev->next = curr2;
+            curr2->next = curr1;
+
+            // updating the pointers.
+            prev = curr2;
+            curr2 = next;
+        }
+        else
+        {
+            prev = curr1;
+            if (curr1->next == NULL)
+            {
+                curr1->next = curr2;
+                return first;
+            }
+            else
+                curr1 = curr1->next;
+        }
+    }
+
+    return first;
+}
+
+Node *merge(Node *first, Node *second)
+{
+
+    if (first == NULL && second == NULL)
+        return first;
+    if (first == NULL)
+        return second;
+    if (second == NULL)
+        return first;
+
+    if (first->data < second->data)
+    {
+        return solve(first, second);
+    }
+    else
+    {
+        return solve(second, first);
+    }
+}
 
 void print(Node *head)
 {
@@ -96,10 +156,14 @@ int main()
     tail1 = head1;
     tail1->next = new Node(4);
     tail1 = tail1->next;
-    tail1->next = new Node(5);
-    tail1 = tail1->next;
-    tail1->next = new Node(6);
-    tail1 = tail1->next;
+    // tail1->next = new Node(5);
+    // tail1 = tail1->next;
+    // tail1->next = new Node(6);
+    // tail1 = tail1->next;
+    // tail1->next = new Node(7);
+    // tail1 = tail1->next;
+    // tail1->next = new Node(8);
+    // tail1 = tail1->next;
     cout << "printing the first linked list." << endl;
     print(head1);
 
@@ -117,6 +181,7 @@ int main()
 
     // now sending the head of two linked list to the merge function
     Node *head = merge(head1, head2);
+    cout << "printing the merge liked list." << endl;
     print(head);
 
     return 0;
