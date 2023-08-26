@@ -23,6 +23,8 @@ public:
     }
 };
 
+/*
+// Method 1 -> using the hash map
 // This function is checking whether the loop is present inside your linked list or not.
 bool DetectLoop(Node* head){
 
@@ -47,6 +49,32 @@ bool DetectLoop(Node* head){
 
     return false;
 
+}
+*/
+
+bool DetectLoop (Node* head)
+{
+    if(head == NULL) return false;
+    if( head -> next == NULL ) return false;
+
+    // using the extra pointer approach. 
+    Node* extra = new Node(-1);
+    Node* temp = head;
+        while( temp != NULL )
+        {
+            if(temp -> next == extra)
+            {
+                return true;
+            }
+            
+            else{
+                Node* forward = temp -> next;
+                temp -> next = extra;
+                temp = forward;
+            }
+        }
+
+    return false;
 }
 
 
